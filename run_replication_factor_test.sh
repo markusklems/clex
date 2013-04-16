@@ -11,6 +11,7 @@ do
    do
       ssh $host 'bash -s' < drop_ycsbtable.sh
    done
+   sleep 50
    ssh $master 'bash -s' < create_ycsbtable.sh $i
    TIME2=$(date +%s)
    echo "$TIME2, start load phase" >> experiment_log.txt
@@ -19,8 +20,8 @@ do
    echo "$TIME3, end load phase" >> experiment_log.txt
    sleep 60
    TIME4=$(date +%s)
-   echo "$TIME2, start run phase" >> experiment_log.txt
+   echo "$TIME4, start run phase" >> experiment_log.txt
    /home/ycsb/bin/ycsb run cassandra-10 -P workloads/workloada -p hosts=$hostsstring -s > "/home/ycsb/run-workloada-N$1.txt"
    TIME5=$(date +%s)
-   echo "$TIME3, end run phase" >> experiment_log.txt
+   echo "$TIME5, end run phase" >> experiment_log.txt
 done

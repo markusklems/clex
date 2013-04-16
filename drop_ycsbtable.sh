@@ -9,4 +9,4 @@ mkdir -p /var/lib/cassandra/saved_caches
 chown cassandra -R /var/lib/cassandra
 
 service cassandra start
-sleep 50
+exit

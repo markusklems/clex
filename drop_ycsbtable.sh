@@ -1,5 +1,5 @@
 #!/bin/bash
-cqlsh -f /home/clex/drop_ycsbtable
+#cqlsh -f /home/clex/drop_ycsbtable
 sleep 10
 service cassandra stop
 rm -Rf /var/lib/cassandra/*

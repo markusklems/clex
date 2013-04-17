@@ -1,5 +1,6 @@
 #!/bin/bash
 master="82.165.133.125"
+mkdir log
 
 for i in {1..5}
 do
@@ -8,7 +9,7 @@ do
    sudo parallel-ssh -h hosts.txt -l root -o /tmp/cassandra-ycsb-exp 'service cassandra stop'
    sudo parallel-ssh -h hosts.txt -l root -o /tmp/cassandra-ycsb-exp 'sh /home/clex/remove_data.sh'
    sudo parallel-ssh -h hosts.txt -l root -o /tmp/cassandra-ycsb-exp 'service cassandra start'
-
+   sleep 60
    ssh $master 'bash -s' < create_ycsbtable.sh $i
    sleep 10
 

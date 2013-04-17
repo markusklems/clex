@@ -3,7 +3,7 @@ master="82.165.133.125"
 mkdir log
 mkdir results
 
-for i in {1..5}
+for i in 1 2 3 4 5
 do
    TIME=$(date +%s)
    echo "$TIME, start experiment with replication factor $i" >> log/experiment_log.txt

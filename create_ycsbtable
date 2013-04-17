@@ -1,3 +1,3 @@
-create keyspace usertable with replication = {'class' : 'SimpleStrategy', 'replication_factor':X};
+create keyspace usertable with replication = {'class' : 'SimpleStrategy', 'replication_factor':REPLFACTR};
 use usertable;
 create table data (key blob, column1 ascii, value blob, PRIMARY KEY(key,column1)) WITH COMPACT STORAGE;

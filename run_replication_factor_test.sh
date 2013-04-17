@@ -1,6 +1,7 @@
 #!/bin/bash
 master="82.165.133.125"
 mkdir log
+mkdir results
 
 for i in {1..5}
 do
@@ -15,13 +16,13 @@ do
 
    TIME2=$(date +%s)
    echo "$TIME2, start load phase" >> log/experiment_log.txt
-   /home/ycsb/bin/ycsb load cassandra-10 -P workloads/workloada -s > "results/load-workloada-N$1.txt"
+   /home/ycsb/bin/ycsb load cassandra-10 -P "`pwd`workloads/workloada" -s > "results/load-workloada-N$1.txt"
    TIME3=$(date +%s)
    echo "$TIME3, end load phase" >> log/experiment_log.txt
    sleep 60
    TIME4=$(date +%s)
    echo "$TIME4, start run phase" >> log/experiment_log.txt
-   /home/ycsb/bin/ycsb run cassandra-10 -P workloads/workloada -s > "results/run-workloada-N$1.txt"
+   /home/ycsb/bin/ycsb run cassandra-10 -P "`pwd`workloads/workloada" -s > "results/run-workloada-N$1.txt"
    TIME5=$(date +%s)
    echo "$TIME5, end run phase" >> log/experiment_log.txt
 done

@@ -9,7 +9,6 @@ updateproportion=0.5
 scanproportion=0
 insertproportion=0
 
-threadcount=30
-target=10000
+threadcount=50
 
 hosts=82.165.133.125,217.160.4.155,217.160.94.220,217.160.94.217,82.165.197.212,87.106.52.227,217.160.94.227,87.106.252.93

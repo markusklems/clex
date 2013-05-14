@@ -1,0 +1,1 @@
+ALTER KEYSPACE usertable WITH REPLICATION = {'class' : 'NetworkTopologyStrategy', 'DC1' : 1, 'DC2' : 1};

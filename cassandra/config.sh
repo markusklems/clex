@@ -1,5 +1,5 @@
 #!/bin/bash
-myhostname=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'`
+myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'`
 seed="82.165.133.125,217.160.4.155,217.160.94.220,217.160.94.217,82.165.197.212,87.106.52.227,217.160.94.227,87.106.252.93"
 if [ -f /etc/cassandra/cassandra.yaml ]; then
   config_file="/etc/cassandra/cassandra.yaml"

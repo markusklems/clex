@@ -5,4 +5,4 @@ elif which rpm &> /dev/null; then
   sudo yum install -y git --disablerepo=epel
 fi
 
-(cd /home; git clone git://github.com/markusklems/clex.git)
+(cd /home; sudo git clone git://github.com/markusklems/clex.git)

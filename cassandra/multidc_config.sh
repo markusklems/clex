@@ -14,4 +14,4 @@ if [ -f /etc/cassandra/conf/cassandra-topology.properties ]; then
   topology_file="/etc/cassandra/conf/cassandra-topology.properties"
 fi
 sudo rm "$topology_file"
-sudo cp "$mytopology" "$topology_file"
+sudo cp "/home/clex/cassandra/$mytopology" "$topology_file"

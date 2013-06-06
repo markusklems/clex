@@ -44,3 +44,4 @@ sudo ln -s /cassandra /var/lib
 sudo mkdir /var/lib/cassandra/data
 sudo mkdir /var/lib/cassandra/commitlog
 sudo mkdir /var/lib/cassandra/saved_caches
+sudo chown -R cassandra /cassandra

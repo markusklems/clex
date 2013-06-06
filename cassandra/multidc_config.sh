@@ -15,3 +15,7 @@ if [ -f /etc/cassandra/conf/cassandra-topology.properties ]; then
   sudo rm "$topology_file"
 fi
 sudo cp "/home/clex/cassandra/$mytopology" "$topology_file"
+
+sleep 5
+
+sudo cassandra service restart

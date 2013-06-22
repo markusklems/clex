@@ -8,8 +8,8 @@ sudo apt-get -y install nagios3 nagios-nrpe-plugin
 sudo parallel-ssh -h $HOSTS_FILE -l $USER -o /tmp/nagios-install "sudo apt-get -y install nagios-nrpe-server; sudo sed -i.bak -r -e 's/allowed_hosts=127.0.0.1/allowed_hosts=$NAGIOS_HOST_IP/g' /etc/nagios/nrpe.cfg; sudo /etc/init.d/nagios-nrpe-server restart"
 
 # install jmx plugin for access to all jmx info
-(wget http://downloads.sourceforge.net/project/nagioscheckjmx/nagioscheckjmx/1.0/check_jmx.tar.gz; tar xvfz check_jmx.tar.gz; mv check_jmx /usr/lib/nagios/plugins/)
-sudo parallel-ssh -h $HOSTS_FILE -l $USER -o /tmp/nagios-jmx-plugin "(wget http://downloads.sourceforge.net/project/nagioscheckjmx/nagioscheckjmx/1.0/check_jmx.tar.gz; tar xvfz check_jmx.tar.gz; mv check_jmx /usr/lib/nagios/plugins/); cp /home/clex/monitoring/nagios_cassandra_command.cfg /etc/nagios-plugins/config/cassandra_cmd.cfg"
+(wget http://downloads.sourceforge.net/project/nagioscheckjmx/nagioscheckjmx/1.0/check_jmx.tar.gz; tar xvfz check_jmx.tar.gz; mv check_jmx/nagios/plugin/check_jmx /usr/lib/nagios/plugins/)
+sudo parallel-ssh -h $HOSTS_FILE -l $USER -o /tmp/nagios-jmx-plugin "(wget http://downloads.sourceforge.net/project/nagioscheckjmx/nagioscheckjmx/1.0/check_jmx.tar.gz; tar xvfz check_jmx.tar.gz; mv check_jmx/nagios/plugin/check_jmx /usr/lib/nagios/plugins/); cp /home/clex/monitoring/nagios_cassandra_command.cfg /etc/nagios-plugins/config/cassandra_cmd.cfg"
 
 # install a simpler nagios-cassandra plugin as an alternative
 # sudo apt-get install libwww-perl libjson-perl

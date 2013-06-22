@@ -21,6 +21,7 @@ sudo parallel-ssh -h $HOSTS_FILE -l $USER -o /tmp/nagios-jmx-plugin "wget http:/
 # sudo parallel-ssh -h $HOSTS_FILE -l $USER -o /tmp/nagios-cassandra-plugin "sudo apt-get install libwww-perl libjson-perl; git clone git://github.com/causes/cassandra-nagios.git /home/cassandra-nagios; ln -s /home/cassandra-nagios/plugins/Jolokia.pm /usr/lib/perl5"
 
 # setup the nagios server conf
+sudo rm /etc/nagios3/conf.d/cassandra.cfg
 N=11
 while read h; do
 	echo "define host{

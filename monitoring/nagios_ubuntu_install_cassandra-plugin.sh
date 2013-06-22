@@ -11,14 +11,14 @@ sudo parallel-ssh -h $HOSTS_FILE -l $USER -o /tmp/nagios-install "sudo apt-get -
 wget http://downloads.sourceforge.net/project/nagioscheckjmx/nagioscheckjmx/1.0/check_jmx.tar.gz
 tar -xvfz check_jmx.tar.gz 
 mv check_jmx /usr/lib/nagios/plugins/
-#sudo parallel-ssh -h $HOSTS_FILE -l $USER -o /tmp/nagios-jmx-plugin "wget http://downloads.sourceforge.net/project/nagioscheckjmx/nagioscheckjmx/1.0/check_jmx.tar.gz; tar -xvfz check_jmx.tar.gz; mv check_jmx /usr/lib/nagios/plugins/"
+sudo parallel-ssh -h $HOSTS_FILE -l $USER -o /tmp/nagios-jmx-plugin "wget http://downloads.sourceforge.net/project/nagioscheckjmx/nagioscheckjmx/1.0/check_jmx.tar.gz; tar -xvfz check_jmx.tar.gz; mv check_jmx /usr/lib/nagios/plugins/"
 
 # install a simpler nagios-cassandra plugin as an alternative
-sudo apt-get install libwww-perl libjson-perl
-git clone git://github.com/causes/cassandra-nagios.git /home/cassandra-nagios
-sudo rm /etc/nagios3/conf.d/cassandra.cfg
-cp /home/clex/monitoring/nagios_cassandra_command.cfg /etc/nagios3/conf.d/cassandra.cfg
-#sudo parallel-ssh -h $HOSTS_FILE -l $USER -o /tmp/nagios-cassandra-plugin "sudo apt-get install libwww-perl libjson-perl; git clone git://github.com/causes/cassandra-nagios.git /home/cassandra-nagios"
+# sudo apt-get install libwww-perl libjson-perl
+# git clone git://github.com/causes/cassandra-nagios.git /home/cassandra-nagios
+# sudo rm /etc/nagios3/conf.d/cassandra.cfg
+# cp /home/clex/monitoring/nagios_cassandra_command.cfg /etc/nagios3/conf.d/cassandra.cfg
+# sudo parallel-ssh -h $HOSTS_FILE -l $USER -o /tmp/nagios-cassandra-plugin "sudo apt-get install libwww-perl libjson-perl; git clone git://github.com/causes/cassandra-nagios.git /home/cassandra-nagios; ln -s /home/cassandra-nagios/plugins/Jolokia.pm /usr/lib/perl5"
 
 # setup the nagios server conf
 N=11
@@ -32,8 +32,8 @@ while read h; do
 define service{
         use                             generic-service         ; Name of service template to use
         host_name                       machine$N
-        service_description             check cache
-        check_command                   check_cassandra_metrics_cache
+        service_description             Check heap memory usage.
+        check_command                   check_heap_memory_usage
         }" | sudo tee -a /etc/nagios3/conf.d/cassandra.cfg
 N=`expr $N + 1`
 done < hosts.txt

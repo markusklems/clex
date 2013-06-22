@@ -28,3 +28,6 @@ define service{
         }" | sudo tee -a /etc/nagios3/conf.d/cassandra.cfg
 N=`expr $N + 1`
 done < hosts.txt
+# check if things are OK
+sudo /usr/sbin/nagios3 -v /etc/nagios3/nagios.cfg
+sudo /etc/init.d/nagios3 restart

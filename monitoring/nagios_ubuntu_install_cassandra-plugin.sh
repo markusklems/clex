@@ -1,4 +1,7 @@
 #!/bin/bash
+USER=${1:-root}
+NAGIOS_HOST_IP=${2:-217.160.108.3}
+HOSTS_FILE=/home/clex/hosts.txt
 # setup remote monitoring for the cluster
 sudo apt-get -y install nagios3 nagios-nrpe-plugin
 # pssh into the node servers and install the agents

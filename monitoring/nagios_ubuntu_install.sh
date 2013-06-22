@@ -20,11 +20,11 @@ while read h; do
 	        alias                   Cassandra $N
 	        address                 $h
 	        }
-	define service{
-	        use                             generic-service         ; Name of service template to use
-	        host_name                       machine$N
-	        service_description             Disk Space
-	        check_command                   check_nrpe_1arg!check_hda1
-	        }" | sudo tee -a /etc/nagios3/conf.d/cassandra.cfg
-	N=`expr $N + 1`
+define service{
+        use                             generic-service         ; Name of service template to use
+        host_name                       machine$N
+        service_description             Disk Space
+        check_command                   check_nrpe_1arg!check_hda1
+        }" | sudo tee -a /etc/nagios3/conf.d/cassandra.cfg
+N=`expr $N + 1`
 done < hosts.txt

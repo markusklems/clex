@@ -1,7 +1,4 @@
 #!/bin/bash
-# install the causes/nagios-cassandra plugin
-sudo apt-get install -y libwww-perl libjson-perl
-
 # setup remote monitoring for the cluster
 sudo apt-get -y install nagios3 nagios-nrpe-plugin
 # pssh into the node servers and install the agents
@@ -26,4 +23,11 @@ N=`expr $N + 1`
 done < hosts.txt
 # check if things are OK
 sudo /usr/sbin/nagios3 -v /etc/nagios3/nagios.cfg
+
+# install nagios-cassandra
+fetch http://downloads.sourceforge.net/project/nagioscheckjmx/nagioscheckjmx/1.0/check_jmx.tar.gz
+tar -xvfz check_jmx.tar.gz 
+mv check_jmx /usr/lib/nagios/plugins/
+
+
 sudo /etc/init.d/nagios3 restart

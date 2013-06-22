@@ -34,7 +34,7 @@ define service{
         use                             generic-service         ; Name of service template to use
         host_name                       machine$N
         service_description             Check heap memory usage.
-        check_command                   check_heap_memory_usage
+        check_command                   check_jmx
         }" | sudo tee -a /etc/nagios3/conf.d/cassandra.cfg
 N=`expr $N + 1`
 done < hosts.txt

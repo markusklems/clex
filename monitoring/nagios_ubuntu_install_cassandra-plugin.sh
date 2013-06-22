@@ -10,6 +10,7 @@ tar -xvfz check_jmx.tar.gz
 mv check_jmx /usr/lib/nagios/plugins/
 
 # install a simpler nagios-cassandra plugin as an alternative
+sudo apt-get install libwww-perl libjson-perl
 git clone git://github.com/causes/cassandra-nagios.git /home/cassandra-nagios
 
 # setup the nagios server conf

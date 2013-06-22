@@ -26,5 +26,5 @@ while read h; do
 	        service_description             Disk Space
 	        check_command                   check_nrpe_1arg!check_hda1
 	        }" | sudo tee -a /etc/nagios3/conf.d/cassandra.cfg
-	(( N+=1 ))
+	(( $N++ ))
 done < hosts.txt

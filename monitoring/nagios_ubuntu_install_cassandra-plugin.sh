@@ -22,6 +22,7 @@ sudo parallel-ssh -h $HOSTS_FILE -l $USER -o /tmp/nagios-jmx-plugin "wget http:/
 
 # setup the nagios server conf
 sudo rm /etc/nagios3/conf.d/cassandra.cfg
+cp /home/clex/monitoring/nagios_cassandra_command.cfg /etc/nagios3/conf.d/cassandra.cfg
 N=11
 while read h; do
 	echo "define host{

@@ -4,7 +4,13 @@ sudo apt-get -y install nagios3 nagios-nrpe-plugin
 # pssh into the node servers and install the agents
 sudo parallel-ssh -h $HOSTS_FILE -l $USER -o /tmp/nagios-install "sudo apt-get -y install nagios-nrpe-server; sudo sed -i.bak -r -e 's/allowed_hosts=127.0.0.1/allowed_hosts=$NAGIOS_HOST_IP/g' /etc/nagios/nrpe.cfg; sudo /etc/init.d/nagios-nrpe-server restart"
 
+# install nagios-cassandra
+wget http://downloads.sourceforge.net/project/nagioscheckjmx/nagioscheckjmx/1.0/check_jmx.tar.gz
+tar -xvfz check_jmx.tar.gz 
+mv check_jmx /usr/lib/nagios/plugins/
+
 # setup the nagios server conf
+sudo rm /etc/nagios3/conf.d/cassandra.cfg
 N=11
 while read h; do
 	echo "define host{
@@ -23,11 +29,5 @@ N=`expr $N + 1`
 done < hosts.txt
 # check if things are OK
 sudo /usr/sbin/nagios3 -v /etc/nagios3/nagios.cfg
-
-# install nagios-cassandra
-fetch http://downloads.sourceforge.net/project/nagioscheckjmx/nagioscheckjmx/1.0/check_jmx.tar.gz
-tar -xvfz check_jmx.tar.gz 
-mv check_jmx /usr/lib/nagios/plugins/
-
 
 sudo /etc/init.d/nagios3 restart

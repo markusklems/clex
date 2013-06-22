@@ -32,7 +32,7 @@ while read h; do
 define service{
         use                             generic-service         ; Name of service template to use
         host_name                       machine$N
-        service_description             Check heap memory with check_jmx.
+        service_description             Check heap memory using check_jmx.
         check_command                   check_jmx_mem
         }" | sudo tee -a /etc/nagios3/conf.d/cassandra.cfg
 N=`expr $N + 1`

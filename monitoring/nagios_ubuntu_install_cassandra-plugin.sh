@@ -13,7 +13,7 @@ mv check_jmx /usr/lib/nagios/plugins/
 sudo apt-get install libwww-perl libjson-perl
 git clone git://github.com/causes/cassandra-nagios.git /home/cassandra-nagios
 sudo rm /etc/nagios3/conf.d/cassandra.cfg
-cp nagios_cassandra_command.cfg /etc/nagios3/conf.d/cassandra.cfg
+cp monitoring/nagios_cassandra_command.cfg /etc/nagios3/conf.d/cassandra.cfg
 
 # setup the nagios server conf
 N=11

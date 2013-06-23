@@ -34,10 +34,11 @@ define service{
         host_name                       machine$N
         service_description             Check heap memory using check_jmx.
         check_command                   check_jmx_mem
+        action_url /nagiosgraph/cgi-bin/show.cgi?host=$HOSTNAME$&amp;service=$SERVICEDESC$register
         }" | sudo tee -a /etc/nagios3/conf.d/cassandra.cfg
 N=`expr $N + 1`
 done < hosts.txt
 # check if things are OK
 sudo /usr/sbin/nagios3 -v /etc/nagios3/nagios.cfg
 
-sudo /etc/init.d/nagios3 restart
+sudo service nagios3 restart

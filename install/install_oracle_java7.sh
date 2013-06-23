@@ -20,7 +20,7 @@ sudo wget --no-check-certificate "$url" --output-document="$tmpdir/`basename $ur
 sudo chmod 777 $tmpdir
 (cd $tmpdir; sudo sh `basename $url` -noregister)
 sudo mkdir -p `dirname $target_java_dir`
-(cd $tmpdir; sudo mv jdk* $target_java_dir)
+(cd $tmpdir; sudo rm *tar.gz; sudo mv jdk* $target_java_dir)
 sudo rm -rf $tmpdir
 # Setup java alternatives.
 update-alternatives --install /usr/bin/java java "$target_java_dir/$JDK/bin/java" 17000

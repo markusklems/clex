@@ -11,10 +11,10 @@ sudo apt-get update -y
 sleep 1
 
 # Install Oracle Java 1.7.
-JDK=jdk1.7.0_25
+JDK=jdk-7u25
 target_java_dir='/opt/java/64'
 sudo mkdir -p $target_java_dir
-url="https://s3-eu-west-1.amazonaws.com/avoidcrappyoraclelicensethatpreventssystemautomation/$JDK.tar.gz"
+url="https://s3-eu-west-1.amazonaws.com/avoidcrappyoraclelicensethatpreventssystemautomation/$JDK-linux-x64.tar.gz"
 tmpdir=`sudo mktemp -d`
 sudo wget --no-check-certificate "$url" --output-document="$tmpdir/`basename $url`"
 sudo chmod 777 $tmpdir
